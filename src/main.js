@@ -1,79 +1,152 @@
-
-
-
 //Declaración de variables para manipular la data
+const dataPokemon = window.POKEMON.pokemon;
+
+//Declaración para a secciones del html
 const pokemones = document.getElementById('pokemones');
-var POKEMON;
-const dataPokemon = POKEMON.pokemon;
-const root = document.getElementById("root");
+const theme = document.getElementById('theme');
 
-//Declaración para el boton filtrar
-const btnFilterBy = document.getElementById('btnFilterBy');
-const filtered_out = document.getElementById('filtered_out');
-const theme = document.getElementById("theme");
-
-//Declaración para el boton Inicio
-const btnStart = document.getElementById('btnStart');
+//Declaración para la pantalla de walcome
 const welcome = document.getElementById('welcome');
-const toReturn = document.getElementById('toReturn');
+const btnStart = document.getElementById('btnStart');
+const burguer = document.getElementById('burguer');
 
+//Boton de inicio
 btnStart.addEventListener("click", () => {
   welcome.classList.add('hide');
   pokemones.classList.remove('hide');
   theme.classList.remove('hide');
+  burguer.classList.remove('hide');
 });
 
-//Di y Fa: Boton que muestra los pokemones filtrados y oculta todos
-btnFilterBy.addEventListener("click", () => {
-  pokemones.style.display = "none";
-  filtered_out.style.display = "block";
-});
+//Función que imprime los datos que son llamados y la imagen de los pokemones en el contenedor pokemones
+const toPrint = (mapData) => {
+  const filter = pokemones;
+  // filter.innerHTML = "";
+  let printPokeons = '';
+  mapData.map((dataPokemon) => {if (dataPokemon.weaknesses.length > 5){
+  }
+    printPokeons +=
+      ` <button type="button" class="divPokemon btnPokemon ${dataPokemon.type[0]} btn btn-primary btn-lg" data-toggle="modal" data-target="#pokemon${dataPokemon.id}">
+        <img src="${dataPokemon.img}"> <br><p class="name">${dataPokemon.name}</p><br>
+      </button>
 
+      <div class="modal fade" id="pokemon${dataPokemon.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content bigModal">
 
-//Di: Botón que regresa a la pantalla que muestra todos los pokemones
-toReturn.addEventListener("click", () => {
-  filtered_out.style.display = "none";
-  pokemones.style.display = "block";
-});
+          <div class="modal-header">
+              <h2 class="modal-title" id="myModalLabel">${dataPokemon.name}</h2>
+            </div>
+            
+            <div class="modal-padd modal-body">
+            <table class="details">
+                <tr> 
+                  <td class="id type" >Type:</td>
+                  <td class="dataid">${dataPokemon.type}</td>
+                  <th rowspan="8"><img class="imgModal" src="${dataPokemon.img}"></th>
+                </tr>
 
-//Por cada elemento del arreglo muestra los datos llamados
-dataPokemon.forEach(element => {
-  let imagePokemon = element.img;
-  let namePokemon = element.name;
-  let typePokemon = element.type;
-  let weaknessesPokemon = element.weaknesses;
-  let candyPokemon = element.candy;
-  let eggPokemon = element.egg;
+                <tr> 
+                  <td class="id height">Height:</td>
+                  <td class="dataid">${dataPokemon.height}</td>
+                </tr> 
 
-  data.toPrint(namePokemon, imagePokemon, typePokemon, weaknessesPokemon, candyPokemon, eggPokemon);
-});
+                <tr>  
+                <td class="id weigh">Weight:</td>
+                  <td class="dataid">${dataPokemon.weight}</td>
+                </tr> 
 
-const show = () => {
-  const info =
-    `<div class="modal-fade" id="details" role="dialog"> 
-        <div class="modal-dialog">
-            <!--Modal content-->
-            <div class="modal-content"> <!--Inicia div para mostrar la info-->
-                <div class="modal-header"> <!--Inicia div header-->
-                    <button class="close" data-dismiss="modal">&times;</button>
-                </div><!--Cierra div header-->
-                <div class="modal-body"> <!--Inicia Modal body-->
-                    <p>Some text in the modal.</p>
-                </div><!--Cierra Modal body-->
-                <div class="modal-footer"><!--Inicia modalfooter-->
-                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div><!--Cierra modalfooter-->
-            </div> <!--Cierra div para mostrar la info-->
-        </div>
-    </div>`
-};
+                <tr> 
+                  <td class="id candy">Candy:</td>
+                  <td class="dataid">${dataPokemon.candy}</td>
+                </tr> 
+                
+                <tr> 
+                <td class="id candy_c">Candy Count:</td>
+                  <td class="dataid">${dataPokemon.candy_count}</td>
+                </tr> 
+                
+                <tr> 
+                  <td class="id spawn_t">Spawn Time:</td>
+                  <td class="dataid">${dataPokemon.spawn_time}</td>
+                </tr> 
+                
+                <tr> 
+                  <td class="id egg">Egg:</td>
+                  <td class="dataid">${dataPokemon.egg}</td>
+                </tr> 
+                
+                <tr> 
+                  <td class="id weaknesses">Weaknesses:</td>
+                  <td class="dataid">${dataPokemon.weaknesses}</td>
+                </tr> 
+                
+                <tr>
+                  <th colspan="3">
+                  <table class="evolution">
+                      <tr>
+                        <td><button type="button" class="btn btn-success btn-lg btnxsmallPre btnprueba" data-target="#pokemon${dataPokemon.num}">
+                        <p class="btnEvPre"> <span class="glyphicon glyphicon-backward" aria-hidden="true"></span> PREVIOUS </p>
+                        </button></td>
 
-const filterWater = dataPokemon.filter(pokemon => pokemon.type.includes("Water"));
+                        <td><button type="button" class="btn btn-info btn-lg btnxsmallEv btnprueba">
+                        <img class="imgEv" src="${dataPokemon.img}"><br>
+                        <p class="btnEv"> <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> EVOLUCIÓN <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> </p>
+                        </button></td>
 
-//Por cada elemento del arreglo muestra los datos llamados
-filterWater.forEach(element => {
-  let namePokemon = element.name;
-  let imagePokemon = element.img;
-  let typePokemon = element.type;
-  data.toPrintFilter(namePokemon, imagePokemon, typePokemon);
+                        <td><button type="button" class="btn btn-success btn-lg btnxsmall btnprueba">
+                        <p class="btnEv"> NEXT <span class="glyphicon glyphicon-forward" aria-hidden="true"></span> </p>
+                        </button></td>
+                        </tr>
+                    </table>
+                  </th>  
+                </tr> 
+
+              </table>
+              </div>
+
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+              Close
+              </button>
+              </div>
+
+          </div>
+          </div>
+      </div>`
+  });
+  filter.innerHTML = printPokeons;
+}
+
+toPrint(dataPokemon);
+
+//Filtrado
+const filterType = document.getElementsByClassName('filterType');
+
+for (let i = 0; i < filterType.length; i++) {
+  filterType[i].addEventListener("click", () => {
+    const poke = filterType[i].id;
+    pokemones.innerHTML = "";
+    const pokeFilter = window.data.filterData(dataPokemon, poke);
+    toPrint(pokeFilter);
+  });
+}
+
+//Ordenado
+const orderName = document.getElementsByClassName('orderName');
+
+for (let i = 0; i < orderName.length; i++) {
+  orderName[i].addEventListener("click", () => {
+    const howDoesItOrder = orderName[i].id;
+    pokemones.innerHTML = "";
+    const pokeOrder = window.data.sortData(dataPokemon, howDoesItOrder);
+    toPrint(pokeOrder);
+  })
+}
+
+//const promedio = document.getElementById('promedio');
+const search = document.getElementById('search');
+
+search.addEventListener("click", () => {
+  alert('Se esta trabajando en esta sección')
 });
