@@ -23,61 +23,65 @@ const toPrint = (mapData) => {
   const filter = pokemones;
   // filter.innerHTML = "";
   let printPokeons = '';
-  mapData.map((dataPokemon) => {if (dataPokemon.weaknesses.length > 5){
-  }
+  mapData.map((dataPokemon) => {
     printPokeons +=
-      ` <button type="button" class="divPokemon btnPokemon ${dataPokemon.type[0]} btn btn-primary btn-lg" data-toggle="modal" data-target="#pokemon${dataPokemon.id}">
+    ` <button type="button" class="divPokemon btnPokemon ${dataPokemon.type[0]} btn btn-primary btn-lg" data-toggle="modal" data-target="#pokemon${dataPokemon.id}">
         <img src="${dataPokemon.img}"> <br><p class="name">${dataPokemon.name}</p><br>
       </button>
 
       <div class="modal fade" id="pokemon${dataPokemon.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content bigModal">
+        <div class="modal-content bigModal">
 
           <div class="modal-header">
               <h2 class="modal-title" id="myModalLabel">${dataPokemon.name}</h2>
-            </div>
+              </div>
             
             <div class="modal-padd modal-body">
             <table class="details">
-                <tr> 
-                  <td class="id type" >Type:</td>
+            <tr> 
+                  <td class="id" >Type:</td>
                   <td class="dataid">${dataPokemon.type}</td>
-                  <th rowspan="8"><img class="imgModal" src="${dataPokemon.img}"></th>
+                  <th rowspan="9"><img class="imgModal" src="${dataPokemon.img}"></th>
                 </tr>
 
                 <tr> 
-                  <td class="id height">Height:</td>
+                  <td class="id">Height:</td>
                   <td class="dataid">${dataPokemon.height}</td>
                 </tr> 
 
                 <tr>  
-                <td class="id weigh">Weight:</td>
+                <td class="id">Weight:</td>
                   <td class="dataid">${dataPokemon.weight}</td>
                 </tr> 
-
+                
                 <tr> 
-                  <td class="id candy">Candy:</td>
+                  <td class="id">Candy:</td>
                   <td class="dataid">${dataPokemon.candy}</td>
                 </tr> 
                 
                 <tr> 
-                <td class="id candy_c">Candy Count:</td>
+                <td class="id">Candy Count:</td>
                   <td class="dataid">${dataPokemon.candy_count}</td>
-                </tr> 
+                  </tr> 
                 
                 <tr> 
-                  <td class="id spawn_t">Spawn Time:</td>
+                  <td class="id">Spawn Time:</td>
                   <td class="dataid">${dataPokemon.spawn_time}</td>
                 </tr> 
+
+                <tr> 
+                  <td class="id">Avg Spawns:</td>
+                  <td class="dataid">${dataPokemon.avg_spawns}</td>
+                </tr> 
                 
                 <tr> 
-                  <td class="id egg">Egg:</td>
+                  <td class="id">Egg:</td>
                   <td class="dataid">${dataPokemon.egg}</td>
                 </tr> 
                 
                 <tr> 
-                  <td class="id weaknesses">Weaknesses:</td>
+                  <td class="id">Weaknesses:</td>
                   <td class="dataid">${dataPokemon.weaknesses}</td>
                 </tr> 
                 
@@ -91,7 +95,7 @@ const toPrint = (mapData) => {
 
                         <td><button type="button" class="btn btn-info btn-lg btnxsmallEv btnprueba">
                         <img class="imgEv" src="${dataPokemon.img}"><br>
-                        <p class="btnEv"> <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> EVOLUCIÓN <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> </p>
+                        <p class="btnEv"> <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> ACTUAL <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> </p>
                         </button></td>
 
                         <td><button type="button" class="btn btn-success btn-lg btnxsmall btnprueba">
@@ -99,15 +103,15 @@ const toPrint = (mapData) => {
                         </button></td>
                         </tr>
                     </table>
-                  </th>  
+                    </th>  
                 </tr> 
-
-              </table>
-              </div>
-
-            <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
-              Close
+                
+                </table>
+                </div>
+                
+                <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+                Close
               </button>
               </div>
 
@@ -122,6 +126,7 @@ toPrint(dataPokemon);
 
 //Filtrado
 const filterType = document.getElementsByClassName('filterType');
+let DataFilter;
 
 for (let i = 0; i < filterType.length; i++) {
   filterType[i].addEventListener("click", () => {
@@ -129,6 +134,7 @@ for (let i = 0; i < filterType.length; i++) {
     pokemones.innerHTML = "";
     const pokeFilter = window.data.filterData(dataPokemon, poke);
     toPrint(pokeFilter);
+    DataFilter = pokeFilter;
   });
 }
 
@@ -139,14 +145,52 @@ for (let i = 0; i < orderName.length; i++) {
   orderName[i].addEventListener("click", () => {
     const howDoesItOrder = orderName[i].id;
     pokemones.innerHTML = "";
-    const pokeOrder = window.data.sortData(dataPokemon, howDoesItOrder);
+    const pokeOrder = window.data.sortData(DataFilter, howDoesItOrder);
     toPrint(pokeOrder);
   })
 }
 
-//const promedio = document.getElementById('promedio');
-const search = document.getElementById('search');
+
+const stats = document.getElementById('stats');
+const array = [];
+
+stats.addEventListener("click", () => {
+  DataFilter.forEach(element => {
+    const type = element.type[0];
+    array.push(element.avg_spawns);
+    const pokeStats = window.data.computeStats(array);
+    pokemones.innerHTML += `
+
+    <div class="modal fade" id="pokemon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+		    <div class="modal-content avg">
+          <div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          
+            <h2 class="modal-title">Did you know ...</h2>
+          </div>
+      
+          <div class="modal-body">
+          <p>${type} type pokemon on average apreciatte ${pokeStats} times compared to other pokemon </p>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+              Close
+            </button>
+          </div>
+
+		    </div>
+	    </div>
+    </div>`;
+
+  });
+});
+
+/* const search = document.getElementById('search');
 
 search.addEventListener("click", () => {
   alert('Se esta trabajando en esta sección')
-});
+}); */

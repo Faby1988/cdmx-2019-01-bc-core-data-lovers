@@ -13,6 +13,14 @@ img {
   width: 70%;
 }
 
+.avg{
+  background-color: #1c295a;
+  color: white;
+  font-size: 2em;
+  text-align: center;
+  width: 97%;
+}
+
 h2 {
   color: white;
   font-size: 4em;
@@ -26,7 +34,7 @@ h2 {
 
 #pokemones,
 #filtered_out {
-  padding-top: 10%;
+  padding-top: 7%;
   margin-left: 1.5%;
   flex-wrap: wrap;
   justify-content: center;
@@ -36,6 +44,7 @@ h2 {
 #btnStart {
   font-size: 4vmin
 }
+
 
 .divPokemon {
   text-align: center;
@@ -61,6 +70,7 @@ table {
 }
 
 .id {
+  background: #1c295a;
   width: 23%;
 }
 
@@ -74,39 +84,6 @@ table {
   border-radius: 25px;
   background-color: rgba(27, 27, 27, 0.9);
   font-size: 2em;
-}
-
-/* Estilos para las celdas de la tabla del modal */
-.type {
-  background: rgb(3, 95, 0);
-}
-
-.height {
-  background: rgb(163, 87, 0)
-}
-
-.weigh {
-  background: rgb(182, 0, 0);
-}
-
-.candy {
-  background: rgb(0, 102, 170);
-}
-
-.candy_c {
-  background: rgb(184, 184, 0);
-}
-
-.egg {
-  background: rgb(0, 129, 101);
-}
-
-.spawn_t {
-  background: rgb(81, 0, 148);
-}
-
-.weaknesses {
-  background: rgb(134, 1, 63);
 }
 
 /* Terminan estilos de las celdas para la tabla del modal */
@@ -135,15 +112,6 @@ table {
 .space {
   padding-top: 3%;
   padding-bottom: 2%;
-}
-
-/*Fa:Imagen de fondo de la pagina principal*/
-.pokemonBackground {
-  background-image: url("./images/Teselia_N2B2.png");
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-
 }
 
 .imgModal {
@@ -192,9 +160,11 @@ table {
 nav.navbar {
   background-color: black;
   border: 0;
-  min-height: 30px;
+  min-height: 80px;
   font-size: 20px;
 }
+
+
 
 .dark {
   /*Estilo para el boton de pokebola del navbar*/
@@ -343,7 +313,7 @@ nav.navbar {
 
   #pokemones,
   #filtered_out {
-    padding-top: 12%;
+    padding-top: 10%;
   }
 
 }
@@ -417,7 +387,7 @@ nav.navbar {
 
   #pokemones,
   #filtered_out {
-    padding-top: 15%;
+    padding-top: 12%;
   }
 
 }
@@ -502,7 +472,7 @@ nav.navbar {
 
   #pokemones,
   #filtered_out {
-    padding-top: 18%;
+    padding-top: 15%;
   }
 
 }
@@ -586,7 +556,7 @@ nav.navbar {
 
   #pokemones,
   #filtered_out {
-    padding-top: 20%;
+    padding-top: 15%;
   }
 
   #iconBall {
@@ -687,7 +657,7 @@ nav.navbar {
   #pokemones,
   #filtered_out {
     /*Agregue*/
-    padding-top: 17%;
+    padding-top: 20%;
   }
 
   .btnPokemon {
@@ -709,11 +679,6 @@ nav.navbar {
     border-radius: 25px;
     background-color: rgba(27, 27, 27, 0.9);
     font-size: 1em;
-  }
-
-  #pokemones,
-  #filtered_out {
-    padding-top: 28%;
   }
 
 }
@@ -797,10 +762,9 @@ nav.navbar {
     width: 80%;
   }
 
-  #pokemones,
-  #filtered_out {
+  #pokemones, #filtered_out {
     /*Agregue*/
-    padding-top: 21%;
+    padding-top: 24%;
   }
 
   .btnPokemon {
@@ -821,11 +785,6 @@ nav.navbar {
     border-radius: 25px;
     background-color: rgba(27, 27, 27, 0.9);
     font-size: 1em;
-  }
-
-  #pokemones,
-  #filtered_out {
-    padding-top: 34%;
   }
 
 }
@@ -918,7 +877,7 @@ nav.navbar {
   #pokemones,
   #filtered_out {
     /*Agregue*/
-    padding-top: 23%;
+    padding-top: 27%;
   }
 
   .btnPokemon {
@@ -942,10 +901,6 @@ nav.navbar {
     font-size: 1em;
   }
 
-  #pokemones,
-  #filtered_out {
-    padding-top: 40%;
-  }
 
 }
 
