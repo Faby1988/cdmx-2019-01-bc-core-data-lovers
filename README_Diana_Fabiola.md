@@ -117,9 +117,19 @@ Con base a esa información fue que se fue manejando la Base de Datos a corde a 
     
     Una vez hecho es testeo de los prototipos de alta fidelida se paso a testear la app ya con las funcionalidades sugeridas por el usuario. Se testeo con usuario de diferentes edades y los resultados los podras encontrar en la siguiente liga:
 
-    [Testo de la página](https://1drv.ms/p/s!AmkkKLbuChrBgp9-JgMOcXCDqpA-eg)
+    [Testeo de la página](https://1drv.ms/p/s!AmkkKLbuChrBgp9-JgMOcXCDqpA-eg)
+
+
 
 - Principios de diseño visual
+### Iteración UX
+Una vez realizado el nuevo testing se llegó a la conclusión de un cambio en el Diseño para la vizualización de Desktop. Considerando las necesidades del usuario se opto por un diseño más limpio donde los Pokemons fueran el principal foco de atención. Otra parte que se necesito modificar fue la presentación de la información de cada uno de ellos. Eliminando información que era poco necesaria y sustituyendola con una nueva la cual le era importante al usuario. En el particular caso de las desventajas y ventajas de cada pokemon el usuario creyó que esta sería una buena implementación para relacionar por completo la aplicación con el videojuego POKEMÓN GO. Ya que al enfrentarse en torneos esta información les sería de gran utilidad.
+
+Link de prototipado: 
+[Marvel](https://marvelapp.com/8704543/screen/53785232)
+
+![prueba](./src/images/MyFirstBoard.jpg)
+
 
 ### Desarrollo Front-end
 
